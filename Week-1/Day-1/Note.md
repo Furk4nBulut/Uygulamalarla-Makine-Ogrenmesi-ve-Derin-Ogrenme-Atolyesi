@@ -8,3 +8,5 @@ Datagrame 2 boyutlu.
 
 scikit part
 standartscaler
+min-max scaler
+Normalizer => L1 Normu , L2 Normu
