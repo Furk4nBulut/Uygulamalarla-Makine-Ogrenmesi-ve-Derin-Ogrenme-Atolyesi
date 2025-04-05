@@ -9,32 +9,32 @@
 **Katılımcılar**: Üniversite Öğrencileri ve Yeni Mezunlar  
 **Yer**: Manisa, Türkiye
 
-Bu eğitim, makine öğrenmesi ve derin öğrenme alanında ileri seviye bilgi ve beceri kazanmak isteyen katılımcılara yönelik hazırlanmıştır. Eğitimde, teorik bilgilerin yanı sıra, uygulamalı atölye çalışmaları ile katılımcıların gerçek dünya problemlerine yönelik çözümler geliştirmeleri, model performanslarını optimize etmeleri ve projelerini başarıyla hayata geçirmeleri hedeflenmektedir.
-
 ## Eğitim İçeriği
 
 - **NumPy** kullanarak array oluşturma  
 - **Pandas** ile veri çerçevesi (DataFrame) oluşturma  
 - **Matplotlib** ile temel grafikler çizme  
 - **Seaborn** ile veri dağılımlarını görselleştirme  
-- Veriyi ölçeklendirme ve normalizasyon  
-- Temel istatistiksel hesaplamalar  
+- Veriyi ölçeklendirme ve normalizasyon işlemleri  
+- Temel istatistiksel hesaplamalar (ortalama, medyan, varyans)  
 - **Sklearn** ile veri ön işleme teknikleri (encoding, scaling)  
-- **Random Forest** modeli ile tahmin yapma  
+- **Sklearn** ile model eğitme ve başarıyı ölçme  
+- **Random Forest** modeli ile tahmin yapma ve değerlendirme  
 - **KNN** algoritması ile el yazısı rakamlarını sınıflandırma  
+- Hiperparametre optimizasyonu ile model başarımını artırma  
 - **Ridge** ve **Lasso** regresyon tekniklerini uygulama  
 - **K-means** algoritması ile veri kümeleri oluşturma  
-- **PCA** ile boyut indirgeme  
+- **PCA** ile boyut indirgeme uygulaması  
 - **DBSCAN** ile yoğunluk bazlı kümeleme analizi  
-- **t-SNE** ile yüksek boyutlu verileri görselleştirme  
-- **OpenAI Gym** ile bir oyun ortamında RL modeli eğitme  
-- **Deep Q-Network** kullanarak bir oyun oynayan model eğitme  
+- **t-SNE** kullanarak yüksek boyutlu verileri 2D/3D görselleştirme  
+- **OpenAI Gym** ile bir oyun ortamında pekiştirmeli öğrenme (RL) modeli eğitme  
+- **Deep Q-Network** kullanarak oyun oynayan model eğitme  
 - **TensorBoard** ile eğitim sürecini görselleştirme  
 - Basit bir **CNN** modeli oluşturma ve eğitme  
 - **Transfer Learning** ile önceden eğitilmiş modellerin doğruluklarını karşılaştırma  
 - **RNN**, **LSTM** ve **GRU** modellerinin başarım farklarını analiz etme  
-- API entegrasyonu çalışmaları  
-- **Q-learning** ile ajan geliştirme
+- **Q-learning** ile bir ajan geliştirme  
+- API entegrasyonu çalışmaları
 
 ## Eğitim Detayları
 
