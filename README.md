@@ -35,7 +35,7 @@ Bu eğitim, makine öğrenmesi ve derin öğrenme alanında ileri seviye bilgi v
 - **RNN**, **LSTM** ve **GRU** modellerinin başarım farklarını analiz etme  
 - API entegrasyonu çalışmaları  
 - **Q-learning** ile ajan geliştirme
-- 
+
 ## Eğitim Detayları
 
 **Eğitim Saatleri**:  
