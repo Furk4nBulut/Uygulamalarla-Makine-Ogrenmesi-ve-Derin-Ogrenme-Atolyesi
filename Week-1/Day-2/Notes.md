@@ -1,10 +1,10 @@
 6 April 2025
 Week 1 Day 2
 
-Preprocessing
+# Preprocessing
 Eksik veri imputasyonu ( imputation ) SimpleImputer
 
-imputasyon ( Doldurma) nedir?
+# imputasyon ( Doldurma) nedir?
 Eksik verilerin yerine tahmin edilen veya hesaplnana değerler koyma işlemidir.
 Amaç: Veri kaybını önlemek,modelin daha iyi performans göstermesini sağlamak.
 
@@ -20,7 +20,7 @@ SimpleImputer kullanımı
 * fill_value parametresi, constant seç,ldiği zaman dolduraak olan değeri belirler
 
 
-Veri Dönüşümü ( Transformation )
+# Veri Dönüşümü ( Transformation )
 * mevcut özellikler kullanılarak yeni özellikler oluşturma işlemidir.
 * Amaç: Modelin karmaşıklığını artırmaki veri setinde bulunmaya ilkileri ortaya çıkarmak.
 * modelin çğrenme kapasitesini artırır.
@@ -39,7 +39,7 @@ Veri Dönüşümü ( Transformation ) - Karşılaştırma
 * PolynomialFeatures: Mofrlein karşmaşılpını artırmak için pılinem özellikleri ouşturur.
 * function transformer verilere özel fonksiyonlar uyugularayak özel dönüşümler sağlar.
 
-Özellik Seçimi ( Feature Selection )
+# Özellik Seçimi ( Feature Selection )
 * Model içim en önemli özellikleri belirleme ve geri kalanları eleme işlemidir.
 * Neden önemli:
   * Modelin performansını artıtır.
@@ -71,7 +71,7 @@ Veri Dönüşümü ( Transformation ) - Karşılaştırma
 
 
 
-Boyut İndirgeme ( diminsionality reduction) : temel bileşen analizi ( principal Compenent analysis - PCA)
+# Boyut İndirgeme ( diminsionality reduction) : temel bileşen analizi ( principal Compenent analysis - PCA)
 * yüksek boyutlu veri setlerinde özellik sayısını azalatma işlenmidir.
 * Amaç:
   * Veri kümrsisin karmaşıklığımı azalatmak7
@@ -117,7 +117,7 @@ Feature Selection ( Özellik Seçimi ) ile Dimensionality Reduction ( Boyut İnd
 
 --- End of one part ---
 
-Eksik, Yanlış ve Marjinal Verilerle Çalışma
+# Eksik, Yanlış ve Marjinal Verilerle Çalışma
 
 Neden veri temizliği önemlidir?
 * Makine öğreinim modellerinin doğru ve güvenilir sonuçlar vermesi için kritik.
@@ -144,7 +144,7 @@ Kullanılan Araçlar ve Kütüphaneler
 * Scikit-learn: makine öğrenimi ve veri ön işleme için geniş bir kütüphane
 * Missingno: eksik verileri görselleştirmek ve analiz etmek için kullanılır
 
-Eksik veri tespiti 
+# Eksik veri tespiti 
 * bir veri seitnden gözlemlerde belirli sutunlerşn değelerini mamasıdır
 * "Nan" not a bumver oalrak gösterilir
 * Neden önemli?
@@ -162,7 +162,7 @@ Missingno Kütüphanesi
 * msno.heatmap() ile eksik verilerin korelasyonunu gösterir
 * msno.dendrogram() ile eksik verilerin hiyerarşik yapısını gösterir
 
-Eksik veri doldurma teknileri
+# Eksik veri doldurma teknileri
 * Eksik veri veri analizini ve modellemeyi olumsuz etkileyebilir
 * doldurma veri kaybını en aza inderek analiz doğruluğunu artılabilir
 * bazı makine öğrenimi algoritmaları eksik velriere işleyemez bu yüzden doldurma gereklidir
@@ -283,7 +283,7 @@ Aykırı değerleri tespit etme - Robust istatiskler yöntemler kullanma
 * standart sapma yerine iqr kullanma iqr aykırı değerlenden daha az etkilenir
 * Robust ölçeklendirme yöntemleri ( RobustScaler ) kullanma
 
-Veri tutarsızlarını düzeltme
+# Veri tutarsızlarını düzeltme
 * Amaç: aynı varlığı temsil eden farklı değerleri birleştirmek veya standartlaştırma
 * Örnekler:
   * "İstanbul","İSTANBUL","istanbul" gibi farklı yazım şekillerini birleştirme
