@@ -10,3 +10,7 @@ scikit part
 standartscaler
 min-max scaler
 Normalizer => L1 Normu , L2 Normu
+
+Onehot encoding
+Label encoding
+Ordinal encoding
