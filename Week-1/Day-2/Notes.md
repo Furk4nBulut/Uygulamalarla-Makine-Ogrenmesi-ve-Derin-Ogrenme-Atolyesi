@@ -242,13 +242,6 @@ Veri tiplerinin doğrulupunu kontrol etme
       * IQR ( çeyrekler arası aralık) verinin orta yüzde ellisini kapsayan aralık
   * Eleme aykırı değerleri veri setinden çıkarmak
 
------ araya kaynamış ----
-Veri tutarsızlarının düzeltilmesi
-* Amaç: aynı varlığı temsil eden farklı değerleri birleştirmek veya standartlaştırma
-* Örnekler:
-  * "İstanbul"
------ araya kaynamış ----
-
 Marjinal aykırı değerlerle başa çıkma
 * Veri setindeki diğer gözlemlerden önemli ölçüde farklı uç değerlerdir
 * Dağılımn kuyruklarında yer alırlar
@@ -290,4 +283,12 @@ Aykırı değerleri tespit etme - Robust istatiskler yöntemler kullanma
 * standart sapma yerine iqr kullanma iqr aykırı değerlenden daha az etkilenir
 * Robust ölçeklendirme yöntemleri ( RobustScaler ) kullanma
 
-
+Veri tutarsızlarını düzeltme
+* Amaç: aynı varlığı temsil eden farklı değerleri birleştirmek veya standartlaştırma
+* Örnekler:
+  * "İstanbul","İSTANBUL","istanbul" gibi farklı yazım şekillerini birleştirme
+  * Farklı biirmlerdeki değerleri aynı birime dönüştürmek ( örneğin, metre ve santimetre)
+* Yöntemler:
+  * str.lower(), str.upper(),str.strip(): Metin verilerini dönüştürmek.
+  * replace(): Belirli değerleri değiştirmek
+  * Fuzzy matching algoritmaları: Yazım hatalarına yakın değerleri bulmak ve düzeltmek.
