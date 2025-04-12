@@ -228,3 +228,232 @@ Cross Validation
 * Cross-validation, modelin gerçek dünya verileri üzerindeki performansını değerlendirmek için önemlidir.
 * https://medium.com/@mtterribile/understanding-cross-validations-purpose-53490faf6a86
 
+Sınıflandırma algoritmalarında performans değerlendirme
+
+Sınıflandırmada Performans Değerlendirme ( Validation Metrics )
+* sınıflandırma etiketli verilerden oluşan bir datasettir.
+* bu yüzden başarıyı değerlendirmek regressyonlara göre daha net bir şekilde gerçekleştirilebiir
+* gerçek sınıflar ve model tarafından tahmin edilen sınıglan kullanılarak modelin performansı ölçükebilir
+* bunu için hata matrisi adı verilen bir matris kullanılır
+* accury precisiob recall f1 score roc auc sınıflandırma modellerinin başarılarımım ölçülmesi için kullanılırlar.
+
+Hata Matrisi ( Confusion Matrix )
+* Sınıflandırma algoritmalarının performansını değerlendirmek için kullanılan bir tablodur.
+* Tahmin edilen sınıflar ile gerçek sınıflar arasındaki ilişkiyi gösterir.
+* Hata matrisinde dört temel terim bulunur:
+  * True Positive (TP): Modelin doğru bir şekilde pozitif sınıfı tahmin ettiği durum.
+  * True Negative (TN): Modelin doğru bir şekilde negatif sınıfı tahmin ettiği durum.
+  * False Positive (FP): Modelin yanlış bir şekilde pozitif sınıfı tahmin ettiği durum.
+  * False Negative (FN): Modelin yanlış bir şekilde negatif sınıfı tahmin ettiği durum.
+* Hata matrisinin yapısı şu şekildedir:
+* 
+```
+                Gerçek Pozitif (1)   Gerçek Negatif (0)
+Tahmin Pozitif (1)      TP                   FP
+Tahmin Negatif (0)      FN                   TN
+```
+* Hata matrisinin kullanımı, modelin performansını değerlendirmek için önemlidir. Hata matrisini kullanarak modelin doğruluğunu, hassasiyetini, geri çağırma oranını ve F1 skorunu hesaplayabiliriz.
+
+Doğruluk Oranı (Accuracy)
+* doğru olarak sınıflandırılmış örnek sayısını tüm örnek saysına oranıdır.
+* eğer dataset imbalancded değilse en sık kullanılan ölçüttür.
+* Accuracy = ( TP + TN ) / ( TP + FP + TN + FN )
+
+Kesinlik ( Precision )
+* pozitif olarak sınıflandırılmış tüm örnekler arasından gerçekten kaç tanesinin doğru sınıflandırılmış olduğunu gösterir.
+* Hasta dediklerimizin gerçekten kaçı hasta ?
+* Precision = TP / ( TP + FP )
+
+Duyarlılık ( Recall, Sensivity )
+* bir sınıflandırmada false negatif sayısının azo lması beklenir
+* çünkü klanserli olab bir bireye kanserli değilsin demek hayati bir hatadır
+* bu hatanın 0 veya 0 a yakın olması 
+* Recall = TP / ( TP + FN )
+
+F1 Score 
+* imbalanced datasetlerin accuracy ile değerlendirmesi hatalı bir yaklaşımdır
+* imbalanced datasetler için f1 score daha doğru bir yaklaşımdır
+* recall ve presion harmonik ortalamaso alınarak hesaplanır
+* F1 Score = 2*Recall Score/Precision Score
+
+ROC ( Receiver operator charactreistic curve) AUC ( Area under the curve )
+* roc ve auc özellikle imbalanced datasetlerde kullanılan bir başarı ölçütüdür.
+* roc eğrisi, modelin pozitif sınıfı doğru tahmin etme oranını (TPR) yanlış pozitif sınıf tahmin etme oranına (FPR) karşı gösterir.
+* auc, ROC eğrisinin altında kalan alanı temsil eder ve modelin genel performansını ölçer.
+* AUC değeri 0 ile 1 arasında değişir. 0.5 değeri rastgele tahminleri, 1 değeri mükemmel tahminleri temsil eder.
+* AUC değeri 0.7-0.8 arası iyi, 0.8-0.9 arası çok iyi, 0.9 ve üzeri mükemmel olarak kabul edilir.
+* AUC değeri, modelin pozitif sınıfı doğru tahmin etme yeteneğini gösterir. AUC değeri yüksek olan modeller, pozitif sınıfı daha iyi ayırt edebilir.
+
+
+
+Makine öğrenmesi sınıflandırma algoritmaları  
+İçindekiler:  
+* KNN  
+* Decision Tree  
+* Random Forest  
+* SVM  
+* Naive Bayes  
+* Lojistik Regresyon  
+
+### K En Yakın Komşu Algoritması (KNN)  
+* Klasik makine öğrenmesi algoritmalarından birisidir.  
+
+#### Öklid Uzaklığı  
+* Pisagor teoreminden faydalanarak bulunan bir uzaklık birimidir.  
+
+#### Manhattan Uzaklığı  
+* Örneklerin koordinatlarının farklarının mutlak değerlerinin toplamı şeklinde ifade edilir.  
+
+#### Minkowski Uzaklığı  
+* Örneklerin farklarının mutlak değeri alınıp bu değerler toplanarak bir `p` değerine göre aşağıdaki formüle göre işlem yapılır:  
+  * `p = 2` alınırsa Öklid uzaklığı bulunur, `p = 1` alınırsa Manhattan uzaklığı bulunur.  
+  * Python'da varsayılan olarak bu uzaklık kullanılır.  
+
+#### K Komşu Sayısı  
+* Kaç komşu ile karar verileceğini belirleyen parametredir.  
+  * Genellikle karar verme aşamasında eşitlik olmaması için tek sayı seçilir.  
+  * `K = 1` alınırsa overfitting'e yatkınlık olur.  
+  * Değer büyüdükçe iş yükü artar.  
+  * Yavaş yavaş büyütmekte fayda vardır.  
+
+#### Diğer Uzaklık Formülleri  
+* Canberra, Minkowski, Chebyshev, Euclidean...  
+
+---
+
+### Decision Tree  
+* Karar ağaçları, girdi değişkenleri ile çıktı değişkenini tek bir ağaç formunda gösterebilen bir algoritmadır.  
+* Supervised algoritmalarından birisidir.  
+* Sınıflandırma ve regresyon problemlerinde kullanılabilir.  
+* Overfitting'e meyilli bir algoritmadır.  
+
+#### Decision Tree Avantajları  
+* Anlaması ve yorumlaması kolaydır, görselleştirmesi kolaydır.  
+* Az oranda bir veriye ihtiyaç duyar fakat kayıp değerleri desteklememektedir.  
+* Kullanılan ağacın maliyeti, ağacı eğitmek için kullanılan veri noktalarının sayısıyla logaritmiktir.  
+* Hem sayısal hem de kategorik verileri işleyebilir.  
+* Çok çıktılı problemleri ele alabilmektedir.  
+
+#### Decision Tree Dezavantajları  
+* Veriyi iyi bir şekilde açıklamayan aşırı karmaşık ağaçlar üretebilir, bu durum ağaç dallanmasının takip edilememesine yol açabilir.  
+* Ezbere öğrenme yaşanabilir. Bu problemin çözümü için hiperparametrelerin ayarlanması gerekmektedir.  
+
+#### Decision Tree Kriterleri  
+* Entropy, Gini  
+
+#### Entropy  
+* Düzensizlik demektir.  
+
+#### Gini  
+* Veri kümesindeki herhangi bir öğenin rastgele etiketlendiğinde yanlış etiketlenme sıklığını ölçer.  
+* Minimum değeri 0, maksimum değeri 0.5'tir.  
+* Entropiye göre daha hızlıdır.  
+
+---
+
+### Random Forest  
+* Bir çeşit karar ağacı algoritmasıdır.  
+* Karar ağaçları yapıları gereği overfitting'e yatkındır.  
+* Bu yüzden Random Forest, veri setini yüzlerce alt sete çevirip her birisine karar verdirir.  
+* En sonunda en çok oy verilen sınıf seçilir.  
+* Decision Tree'ye göre daha yavaş çalışır.  
+* Overfitting'e karşı daha dayanıklıdır.  
+
+---
+
+### Support Vector Machine (SVM)  
+* Destek vektör makineleri genellikle sınıflandırma problemlerinde kullanılan, regresyon problemlerinde de kullanılabilen gözetimli öğrenme yöntemlerinden birisidir.  
+* Bir düzlem üzerine yerleştirilmiş noktaları ayırmak için bir doğru, düzlem ya da hiper düzlem çizilir.  
+* Karmaşık ama küçük ve orta ölçekteki veri setleri için çok uygundur.  
+* Verinin ölçeklendirilmesi önemlidir.  
+
+#### SVM  
+* Siyahlar ve beyazlar iki sınıftır.  
+* Bu sınıfları birbirinden ayırmak için bir vektör (hiper düzlem) çizilir.  
+* Bu vektör, iki sınıfa da eşit uzaklıkta ve iki sınıftan da olabildiğince uzakta olmalıdır.  
+* Sınıflandırılması en zor veri noktaları, yani vektöre en yakın noktalar, destek vektör olarak alınır.  
+
+#### Marjin ve C Parametresi  
+* İki destek vektör arasındaki mesafeye marjin denir.  
+* Marjin mesafesi ne kadar büyükse doğru sınıflandırma ihtimali o kadar yüksektir.  
+* `C` parametresi ile marjini kontrol edebiliriz.  
+  * `C` ne kadar büyükse marjin o kadar dardır.  
+  * Model overfitting'e doğru kayıyorsa `C` azaltılabilir.  
+
+#### Hard Marjin ve Soft Marjin  
+* Örnekler her zaman düzgün dağılmayabilir.  
+* Bazı örnekler birbirlerinin bölgelerine geçebilir. Buna soft marjin adı verilir.  
+* Hard marjin ise örneklerin doğru ayrılması konusunda çok hassastır. Bu durum sınıflandırmayı güçleştirebilir.  
+
+#### SVM Kernel  
+* Eğer elimizde çok karmaşık bir veri seti varsa bazen ayırmakta zorlanabiliriz.  
+* Bu tip durumlarda kernel fonksiyonları bize yardımcı olabilir.  
+* Elimizdeki verileri veri dağılımına uygun kernel fonksiyonlarıyla çarparak daha iyi sonuçlar elde edebiliriz.  
+
+##### Lineer Kernel  
+* Doğrusal kernel demektir.  
+* Diğer kernellere göre daha hızlıdır.  
+* Sınıflar lineer bir vektör ile ayrılır.  
+* Formül: `F(X, Xj) = sum(x * Xj)`  
+
+##### Gaussian Radial Basis Function (RBF)  
+* En sık tercih edilen kernellerden birisidir.  
+* Lineer olmayan veriler için kullanılır.  
+* Scikit-learn kütüphanesinde varsayılan değerdir.  
+* Modele manuel olarak gamma parametresi eklenir.  
+* En çok tercih edilen gamma değeri `0.1`'dir.  
+* Formül: `F(X, Xj) = exp(-gamma * ||X - Xj||^2)`  
+
+##### Polynomial Kernel  
+* Lineer kernelin daha genel halidir.  
+* Çok verimli bir kernel olmadığı için pek tercih edilmez.  
+* Formül: `F(X, Xj) = (X * Xj + 1)^d`  
+
+##### Sigmoid Kernel  
+* Daha çok yapay sinir ağlarında kullanılır.  
+* Formül: `K(X, Y) = tanh(alpha * X * Y + beta)`  
+
+---
+
+### Naive Bayes Sınıflandırma  
+* Matematiksel bir modeldir.  
+* Sınıflandırma algoritmasıdır. Olasılık ilkelerine göre tanımlanmış bir dizi hesaplama ile çalışır.  
+
+#### Naive Bayes Classification  
+* Her özellik birbirinden bağımsız kabul edildiği için logistic regression gibi modellerden daha iyi performans gösterebilir.  
+* Basit ve kolay uygulanır.  
+* Az veriyle iyi işler yapar.  
+* Devamlı ve kesikli veriler ile kullanılabilir.  
+* Dengesiz veri setinde kullanılabilir.  
+* Yüksek boyutlu verilerle çalışılabilir.  
+* Gerçek hayatta her özellik bir noktada bağımlıdır.  
+
+#### Naive Bayes Türleri  
+* **Gaussian Naive Bayes**: Sürekli veriler için kullanılır. Özelliklerin normal dağılıma sahip olduğu varsayılır.  
+* **Multinomial Naive Bayes**: Kesikli veriler için kullanılır. Özelliklerin multinom dağılımına sahip olduğu varsayılır.  
+* **Bernoulli Naive Bayes**: İkili (binary) veriler için kullanılır. Özelliklerin Bernoulli dağılımına sahip olduğu varsayılır.  
+
+---
+
+### Lojistik Regresyon  
+* Sınıflandırma algoritmasıdır.  
+* İki veri faktörü arasındaki ilişkileri bulmak için matematikten yararlanan bir veri analizi tekniğidir.  
+* Daha sonra diğerine bağlı olarak tahmin yapar.  
+* Hem binary hem de multiclass classification yapar.  
+* Formülü sigmoid fonksiyonudur.  
+* Sigmoid fonksiyonu `-sonsuz` ile `+sonsuz` arasında değer alır ve `0` ile `1` arasında bir değer döndürür.  
+* Formül: `sigmoid = 1 / (1 + e^-x)`  
+
+#### Optimizasyon Problemleri  
+* Optimizasyon probleminde varsayılan algoritma `lbfgs`'dir.  
+
+#### Dikkat Edilecek Unsurlar  
+* Optimizasyon problemi için uygun çözümleyici seçilmelidir.  
+
+#### Avantajları  
+* Uygulaması ve yorumlaması kolaydır.  
+* Overfitting'e daha az yatkındır ama büyük veri setlerinde overfitting yapabilir.  
+
+#### Dezavantajları  
+* Az verili problemlerde overfitting yapabilir.  
+* Veri setinin doğrusal olarak ayrılmış olması gerekir.
