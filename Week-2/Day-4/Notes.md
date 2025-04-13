@@ -101,3 +101,62 @@
 * **Karar verme**: Elde edilen sonuçlar sayesinde daha iyi kararlar vermemizi sağlar.  
 * **Özetle**: Çoklu doğrusal regresyon, birden fazla bağımsız değişkenin bir bağımlı değişken üzerindeki etkisini anlamak ve tahmin yapmak için kullanılır. Bu sayede karmaşık ilişkileri modelleyerek daha iyi tahminler yapabiliriz.
 
+---
+
+Diğer regresyon türleri # tablo
+| Regresyon Türü         | Açıklama                                                                                     | Kullanım                                                                                     | Avantajları                                                                                 | Dezavantajları                                                                                 |
+|------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Lineer Regresyon       | Bağımlı değişken ile bağımsız değişkenler arasındaki doğrusal ilişkiyi modelleme.            | Basit ilişkilerin analizi ve tahmin yapma.                                                 | Kolay anlaşılır, hızlı hesaplama, düşük hesaplama maliyeti.                                 | Sadece doğrusal ilişkileri modelleyebilir, çoklu doğrusal bağlantı sorunları.                   |
+| Çoklu Lineer Regresyon | Birden fazla bağımsız değişkenin etkisini modelleme.                                         | Karmaşık ilişkilerin analizi ve tahmin yapma.                                               | Daha fazla değişken ile daha iyi tahminler yapma imkanı.                                     | Çoklu doğrusal bağlantı sorunları, modelin karmaşıklığı.                                        |
+* **Ridge Regresyon**: Çoklu doğrusal bağlantı sorununu çözmek için kullanılan bir düzenleme yöntemi.
+* **Lasso Regresyon**: Değişken seçimi yaparak modelin karmaşıklığını azaltan bir düzenleme yöntemi.
+* **Elastic Net Regresyon**: Ridge ve Lasso regresyonlarının birleşimi, her iki yöntemin avantajlarını bir araya getirir.
+* **Polynomial Regresyon**: Bağımsız değişkenlerin polinom fonksiyonları ile modelleme.
+* **Logistic Regresyon**: Bağımlı değişkenin kategorik olduğu durumlarda kullanılır.
+
+
+Ridge regression 
+* ridge resgresyonu özellikwe çoklu doğrusal regresyon modelerde overfiting sorunun çözmek ve modelin genleeme yeteğini artımak için kullanılan bir düzenleme yöntemidir.
+* en küçük 
+
+Lasso Regression
+* istatisk ve makine öğrenimi alanındasıklıkla kullanılır.
+* özellikle çoklu dorğısal bağlantı
+
+Ridge vs Lasso Regresyon # tablo
+| Özellik                | Ridge Regresyon                                                                 | Lasso Regresyon                                                                 | Elastic Net Regresyon                                                              |
+|-----------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Amaç                  | Çoklu doğrusal bağlantı sorununu çözmek ve modelin genelleme yeteneğini artırmak. | Değişken seçimi yaparak modelin karmaşıklığını azaltmak.                          | Ridge ve Lasso regresyonlarının birleşimi, her iki yöntemin avantajlarını bir araya getirir. |
+k kare hata fonksiyonunu minimize ederken, modelin karmaşıklığını azaltmak için bir düzenleme terimi ekler.
+
+
+
+Elastic net regresoynu 
+* ridge ve lasso regresyonlarının en iyi özelliklerini bir araya getiren hibrit bir düzenleme yöntemidir.
+* hem dğeişken seçimi yapnma yeteğini lasso hem de çoklu doğrusal nağlantı sorununa karşıdayankılıık ridge gibi avantajlar sunar
+* ridge ve lasso nun birleştimi
+* Esnelik: elastic net iki farklı düzenleme paramresine sahiptir
+* Çoklu doğrusal bağlantı: korelasyonu yğjsej olan değişkenlerin olduğu durumlarda elastic net lasso gibi değişken seçimi yaparak bu sorunu çözer.
+
+Random forest regresyonu
+* karar ağaçlarını gücünü birleştirerek güçlü ve esnerk bir tahmin modeli sunar
+*  yüksek doğrulur overfffitng i öbleme ve farklı veri türlerini yöbetme gibi özellikleri sayesinde birçok alanda yaygın olarak kullanulunur
+* önemli değişkenlerin belirlenmesi
+* farklı veri türlerini yönetme 
+* eksik veri ile başa çıkma
+
+Polinom regresyon
+* doprusal olmayan ilişkiler: doğrusal regresynun doğrusal ilişileri modelleyemediği durumlarda kullanılır
+* eğrisel modelleme: veri noktalarına daha iyi uyum sağlamak için eğrisel bir moıdel oluşturur.
+* polinom denklemi: Y = β₀ + β₁x + β₂x² + ... + βₙxⁿ şeklinde ifade edilir. burada n polinom derecesidir
+* derecenin önemi: derecenin artmasıyla modelin karmaşıklığı artar. çok yüksek dereceler overfitting e neden olabilir.
+* kullanım alanları: zaman serisi analizi, finans , makine öğrenmesi , doğal bililmer gibi bir çok alanda kullanılır
+* avantajları: doğrusal olmayan ilişkileri modelleyebiir. esnek bir modeldir.
+* dezavantajları: overfitting e eğilimlidir. yüksek dereceli polinomlar yorumlanması zordur.
+
+
+
+
+
+
+
