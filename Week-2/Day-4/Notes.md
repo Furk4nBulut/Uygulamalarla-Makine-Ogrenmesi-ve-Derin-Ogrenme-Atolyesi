@@ -85,7 +85,7 @@
 
 ---
 
-## Multiple Linear Regression (Çoklu Lineer Regresyon)
+### Multiple Linear Regression (Çoklu Lineer Regresyon)
 * Y = \(\beta_0 + \beta_1 \cdot x_1 + \beta_2 \cdot x_2 + ... + \beta_n \cdot x_n + e\)
 * **y**: Bağımlı değişken (tahmin etmek istediğimiz değişken).  
 * **β₀**: Sabit terim (kesişim noktası).  
@@ -103,60 +103,52 @@
 
 ---
 
-Diğer regresyon türleri # tablo
+### Diğer Regresyon Türleri
 | Regresyon Türü         | Açıklama                                                                                     | Kullanım                                                                                     | Avantajları                                                                                 | Dezavantajları                                                                                 |
 |------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | Lineer Regresyon       | Bağımlı değişken ile bağımsız değişkenler arasındaki doğrusal ilişkiyi modelleme.            | Basit ilişkilerin analizi ve tahmin yapma.                                                 | Kolay anlaşılır, hızlı hesaplama, düşük hesaplama maliyeti.                                 | Sadece doğrusal ilişkileri modelleyebilir, çoklu doğrusal bağlantı sorunları.                   |
 | Çoklu Lineer Regresyon | Birden fazla bağımsız değişkenin etkisini modelleme.                                         | Karmaşık ilişkilerin analizi ve tahmin yapma.                                               | Daha fazla değişken ile daha iyi tahminler yapma imkanı.                                     | Çoklu doğrusal bağlantı sorunları, modelin karmaşıklığı.                                        |
-* **Ridge Regresyon**: Çoklu doğrusal bağlantı sorununu çözmek için kullanılan bir düzenleme yöntemi.
-* **Lasso Regresyon**: Değişken seçimi yaparak modelin karmaşıklığını azaltan bir düzenleme yöntemi.
-* **Elastic Net Regresyon**: Ridge ve Lasso regresyonlarının birleşimi, her iki yöntemin avantajlarını bir araya getirir.
-* **Polynomial Regresyon**: Bağımsız değişkenlerin polinom fonksiyonları ile modelleme.
-* **Logistic Regresyon**: Bağımlı değişkenin kategorik olduğu durumlarda kullanılır.
 
+---
 
-Ridge regression 
-* ridge resgresyonu özellikwe çoklu doğrusal regresyon modelerde overfiting sorunun çözmek ve modelin genleeme yeteğini artımak için kullanılan bir düzenleme yöntemidir.
-* en küçük 
+### Ridge Regresyon
+* Çoklu doğrusal regresyon modellerinde overfitting sorununu çözmek ve modelin genelleme yeteneğini artırmak için kullanılan bir düzenleme yöntemidir.
 
-Lasso Regression
-* istatisk ve makine öğrenimi alanındasıklıkla kullanılır.
-* özellikle çoklu dorğısal bağlantı
+---
 
-Ridge vs Lasso Regresyon # tablo
+### Lasso Regresyon
+* İstatistik ve makine öğrenimi alanında sıklıkla kullanılır.
+* Özellikle çoklu doğrusal bağlantı sorunlarını çözmek ve değişken seçimi yapmak için kullanılır.
+
+---
+
+### Ridge vs Lasso Regresyon
 | Özellik                | Ridge Regresyon                                                                 | Lasso Regresyon                                                                 | Elastic Net Regresyon                                                              |
 |-----------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | Amaç                  | Çoklu doğrusal bağlantı sorununu çözmek ve modelin genelleme yeteneğini artırmak. | Değişken seçimi yaparak modelin karmaşıklığını azaltmak.                          | Ridge ve Lasso regresyonlarının birleşimi, her iki yöntemin avantajlarını bir araya getirir. |
-k kare hata fonksiyonunu minimize ederken, modelin karmaşıklığını azaltmak için bir düzenleme terimi ekler.
 
+---
 
+### Elastic Net Regresyon
+* Ridge ve Lasso regresyonlarının en iyi özelliklerini bir araya getiren hibrit bir düzenleme yöntemidir.
+* Hem değişken seçimi yapma yeteneği (Lasso) hem de çoklu doğrusal bağlantı sorununa dayanıklılık (Ridge) avantajlarını sunar.
+* Esneklik: Elastic Net iki farklı düzenleme parametresine sahiptir.
+* Çoklu doğrusal bağlantı: Korelasyonu yüksek olan değişkenlerin olduğu durumlarda Elastic Net, Lasso gibi değişken seçimi yaparak bu sorunu çözer.
 
-Elastic net regresoynu 
-* ridge ve lasso regresyonlarının en iyi özelliklerini bir araya getiren hibrit bir düzenleme yöntemidir.
-* hem dğeişken seçimi yapnma yeteğini lasso hem de çoklu doğrusal nağlantı sorununa karşıdayankılıık ridge gibi avantajlar sunar
-* ridge ve lasso nun birleştimi
-* Esnelik: elastic net iki farklı düzenleme paramresine sahiptir
-* Çoklu doğrusal bağlantı: korelasyonu yğjsej olan değişkenlerin olduğu durumlarda elastic net lasso gibi değişken seçimi yaparak bu sorunu çözer.
+---
 
-Random forest regresyonu
-* karar ağaçlarını gücünü birleştirerek güçlü ve esnerk bir tahmin modeli sunar
-*  yüksek doğrulur overfffitng i öbleme ve farklı veri türlerini yöbetme gibi özellikleri sayesinde birçok alanda yaygın olarak kullanulunur
-* önemli değişkenlerin belirlenmesi
-* farklı veri türlerini yönetme 
-* eksik veri ile başa çıkma
+### Random Forest Regresyonu
+* Karar ağaçlarının gücünü birleştirerek güçlü ve esnek bir tahmin modeli sunar.
+* Yüksek doğruluk, overfitting'i önleme ve farklı veri türlerini yönetme gibi özellikleri sayesinde birçok alanda yaygın olarak kullanılır.
+* Önemli değişkenlerin belirlenmesi, eksik veri ile başa çıkma gibi avantajlar sunar.
 
-Polinom regresyon
-* doprusal olmayan ilişkiler: doğrusal regresynun doğrusal ilişileri modelleyemediği durumlarda kullanılır
-* eğrisel modelleme: veri noktalarına daha iyi uyum sağlamak için eğrisel bir moıdel oluşturur.
-* polinom denklemi: Y = β₀ + β₁x + β₂x² + ... + βₙxⁿ şeklinde ifade edilir. burada n polinom derecesidir
-* derecenin önemi: derecenin artmasıyla modelin karmaşıklığı artar. çok yüksek dereceler overfitting e neden olabilir.
-* kullanım alanları: zaman serisi analizi, finans , makine öğrenmesi , doğal bililmer gibi bir çok alanda kullanılır
-* avantajları: doğrusal olmayan ilişkileri modelleyebiir. esnek bir modeldir.
-* dezavantajları: overfitting e eğilimlidir. yüksek dereceli polinomlar yorumlanması zordur.
+---
 
-
-
-
-
-
-
+### Polinom Regresyon
+* **Doğrusal olmayan ilişkiler**: Doğrusal regresyonun doğrusal ilişkileri modelleyemediği durumlarda kullanılır.
+* **Eğrisel modelleme**: Veri noktalarına daha iyi uyum sağlamak için eğrisel bir model oluşturur.
+* **Polinom denklemi**: \(Y = β₀ + β₁x + β₂x² + ... + βₙxⁿ\) şeklinde ifade edilir. Burada \(n\), polinom derecesidir.
+* **Derecenin önemi**: Derecenin artmasıyla modelin karmaşıklığı artar. Çok yüksek dereceler overfitting'e neden olabilir.
+* **Kullanım alanları**: Zaman serisi analizi, finans, makine öğrenmesi, doğal bilimler gibi birçok alanda kullanılır.
+* **Avantajları**: Doğrusal olmayan ilişkileri modelleyebilir, esnek bir modeldir.
+* **Dezavantajları**: Overfitting'e eğilimlidir, yüksek dereceli polinomlar yorumlanması zordur.
