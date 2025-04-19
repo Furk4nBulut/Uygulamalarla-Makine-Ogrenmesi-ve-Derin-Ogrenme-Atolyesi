@@ -156,3 +156,71 @@ Tüm bu yazılanlar GitHub wiki için uygun formatta yazılacaktır.
   * Veriyi birden fazla Gauss dağılımı ile modelleyerek kümeleme yapar.
   * Küme sayısını belirlemek için BIC veya AIC gibi kriterler kullanılabilir.
   * Daha esnek ve karmaşık veri yapıları için uygundur.
+
+## Gaussian Mixture Models
+* GMM, veriyi gaussian normal dağılımlarına dayalı larak modellemeyi ve kümeleri tanıımlamayı amaçlar
+* Çalışna prensibi:
+  * Modellemem: veriyi birden fazlagaussian dağılımı ile modellemer.
+  * EM Alogritması: Expectation-Maximization (EM) algoritması kullanılarak model parametleri iteratif olarak güncellenir.
+  * Kümeleme: Her veri noktası, her gaussiab bileşenine ait olma olasılığnıa göre kümelernir.
+
+### Gaussian Mixture Models - Özellikler ve kullanım
+* **Özellikler**:
+  * Yumuşak kümeleme: her veri noktası her kümete ait olma olasğılına göre değrlendrilir.
+  * parametrik: dağılım parameterleri ortalama ve kovarnyans ,le modelleme yapar
+  * esneklik : çesitli veri ypaıları için uygundurç
+
+### Gaussian Mixture Models - Temel Bileşenlerleri
+* K bileşen ( k cluster): verinin kaç farklu gauss dağılımnın karışımından oluştuğunu belirten önceden tnaımlanmış küme sayısıdırç
+* ağırlıkları her bir gauss bileşenin karışımdkai önemini beya katkısnı temsil eden olaslılklqardır. tüm ağırlıklar toplammı 1 dir
+* ortalamalar her bi  gauyss bileşinin merkiezini ortalama vektmröünü temsil eder.
+* kovareyans marixleri her bir hauss bileinşni şekilini ve yatılımın varyansınu ve özellikler arasındaki ilikileri tanımlarr. kovanran matrisler farklı şekillerde olabiilir ( sfreik i köşegen ...)
+
+### Gaussian Mixture Models - Algoritma
+* Başlangıç ( Initialization): Başlangıçta her bir gauss bileşeni için ortalama, kovaryans ve ağırlıklar rastgele veya belirli bir yöntemle atanır.
+* Beklenti (Expectation - E Adımı): Her veri noktasının her bir gauss bileşenine ait olma olasılığı hesaplanır. Bu adımda, her bir veri noktasının her bir bileşene ait olma olasılığı belirlenir.
+* Maksimizasyon (Maximization): Olasılıklar kullanılarak her bir gauss bileşeninin ortalama, kovaryans ve ağırlıkları güncellenir. Bu adımda, her bir bileşenin parametreleri güncellenir.
+* Tekrar ( Iteration): Beklenti ve maksimizasyon adımları, parametreler değişmediği veya çok az değiştiği sürece tekrarlanır.
+* Sonuç: Algoritma yakınsadğında her bir veri noktaıs en yüksek üyelik olasılığına sahip olduğu gauss bileşnine kümeye atanur.
+
+### Gaussian Mixture Models - Avantaj ve Dezavantaj
+* **Avantajlar**:
+  * kümelerin sadece yuvarlak olmak zorunda olmadığını eliptik şekillerde de olabikiceğin varsayarç
+  * her bir mnoktanın bir ümeye ait okam olasılığını verir ( yumusak kğmeleme )
+  * Farklı boyutlardaki ve korelasyonynlardaki  modelleyebillir
+* **Dezavantajlar**:
+  * küme sayısının K önceden belirlenmesi gerekir
+  * başlangıtça değerlerine duyarlı olabilir ve yerel optimumlara takılabiir
+  * çok sayıda parametre sahio sahio olduğu için büyük veri swetleribde ve yğjsej boyytlu verilerde hesaplama hesaplama maliyetli olabilir.
+  * tekil koveryans matrixlseri sorunlara yol açabilir ( düzenleme teknikleri gerekebilir )
+
+# K-Means - Hiyeralik Kümeleme - DBSCan - GMM Kıyaslama tablosu
+
+| Özellik                          | K-Means                        | Hiyerarşik Kümeleme                | DBSCAN                       | GMM                               |
+|----------------------------------|--------------------------------|------------------------------------|------------------------------|-----------------------------------|
+| Küme Sayısı                      | Önceden belirlenmeli           | Önceden belirlenmeli               | Önceden belirlenmemeli       | Önceden belirlenmeli              |
+| Kümeleme Yöntemi                 | Merkezi tabanlı                | Hiyerarşik                         | Yoğunluk tabanlı             | Parametrik                        |
+| Aykırı Değer Tespiti             | Yok                            | Yok                                | Var                          | Yok                               |
+| Küme Şekli                       | Yuvarlak                       | Herhangi                           | Herhangi                     | Eliptik                           |
+| Hesaplama Süresi                 | Hızlı                          | Yavaş                              | Orta                         | Orta                              |
+| Parametre Ayarı                  | K zorunlu                      | Dendrogram ile                     | eps ve min_samples           | K ve ağırlıklar                   |
+| Kullanım Alanları                | Pazar segmentasyonu            | Genetik analiz                     | Gürültü analizi              | Görüntü analizi                   |
+| Uygulama Alanları                | Görüntü sıkıştırma             | Sosyal ağ analizi                  | Anomali tespiti              | Veri keşfi                        |
+| Çıktı Formatı                    | Küme etiketleri                | Dendrogram                         | Küme etiketleri              | Küme olasılıkları                 |
+| Yorumlama Kolaylığı              | Kolay                          | Zor                                | Kolay                        | Zor                               |
+| Bellek Kullanımı                 | Düşük                          | Yüksek                             | Orta                         | Yüksek                            |
+| parametre hassasiyeti            | Başlangıç merkezlerine duyarlı | Dendrogram kesim noktasına duyarlı | eps ve min_samples'a duyarlı | Başlangıç parametrelerine duyarlı |
+| ölçeklenebilirlik ( Büyük veri ) | Orta                           | Yüksek                             | Yüksek                       | düşük                             |
+
+# PCA (Principal Component Analysis) vs t-SNE (t-Distributed Stochastic Neighbor Embedding) Tablosu
+| Özellik                | PCA                                       | t-SNE                                      |
+|------------------------|-------------------------------------------|--------------------------------------------|
+| Doğrusallık            | Lineer varsayımlar                        | Non-lineer varsayımlar                     |
+| Temel Amaç             | Varyansı maksimize etme, özellik çıkarımı | Görselleştirme , Yerel Komşulukları koruma |
+| Global Yapı Koruma     | Evet                                      | Hayır                                      |
+| Yerel Yapı Koruma      | orta                                      | çok iyi                                    |
+| Yorumlanabilirlik      | genellikle yüksek                         | düşük                                      |
+| Hesaplama Maliyeti     | Düşük                                     | Yüksek                                     |
+| Büyük Veri Problemleri | Evet                                      | Hayır                                      |
+| Parametre Hassasiyeti  | Orta ( Bileşen Sayısı )                   | Yüksek ( Perlexity,iterasypn sayısı )      |
+
