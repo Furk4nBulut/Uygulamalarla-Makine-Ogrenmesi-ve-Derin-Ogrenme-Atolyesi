@@ -99,12 +99,12 @@ class HyperTuner:
 
         if param_grid:
             # Use RandomizedSearchCV for complex models
-            if model_name in ["RandomForest", "GradientBoosting", "XGBoost", "LightGBM", "CatBoost", "SVR"]:
+            if model_name in ["SVR"]:
                 search = RandomizedSearchCV(
                     model,
                     param_distributions=param_grid,
                     n_iter=10,  # Sample 10 combinations
-                    cv=5,
+                    cv=2,
                     scoring='neg_mean_absolute_error',
                     n_jobs=-1,
                     verbose=1,
@@ -115,7 +115,7 @@ class HyperTuner:
                 search = GridSearchCV(
                     model,
                     param_grid,
-                    cv=5,
+                    cv=1,
                     scoring='neg_mean_absolute_error',
                     n_jobs=-1,
                     verbose=1

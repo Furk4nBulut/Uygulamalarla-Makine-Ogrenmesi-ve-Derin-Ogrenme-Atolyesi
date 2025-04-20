@@ -17,7 +17,7 @@ class ModelEvaluator:
             output_dir (str): Directory to save the output CSV file (default: "predictions").
         """
         self.model_names = [
-            "CatBoost",
+            "SVR",
         ]
         self.best_model_name = best_model_name
         self.rmse_scores = {}
