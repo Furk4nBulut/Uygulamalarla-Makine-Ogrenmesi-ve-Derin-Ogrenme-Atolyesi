@@ -1,0 +1,2 @@
+Best Model: RF
+F1 Score: 0.7573
