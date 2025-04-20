@@ -7,26 +7,17 @@ from HyperTuner import HyperTuner
 from WeightedAssemble import WeightedEnsemble
 
 
-
-
 class ModelEvaluator:
-    def __init__(self, best_model_name="WeightedEnsemble"):
+    def __init__(self, best_model_name="WeightedEnsemble", output_dir="predictions"):
         """
         Initialize with a list of regression model names and specify the best model for final predictions.
 
         Args:
             best_model_name (str): Name of the model to use for final predictions (default: "WeightedEnsemble").
+            output_dir (str): Directory to save the output CSV file (default: "predictions").
         """
         self.model_names = [
-            "LinearRegression",
-            "Ridge",
-            "Lasso",
-            "ElasticNet",
-            "KNN",
-            "DecisionTree",
-            "CatBoost",
-            "SVR",
-            "WeightedEnsemble"
+            "CatBoost"
         ]
         self.best_model_name = best_model_name
         self.rmse_scores = {}
@@ -34,6 +25,8 @@ class ModelEvaluator:
         self.best_params = {}
         self.tuner = HyperTuner()
         self.trained_models = {}
+        self.output_dir = output_dir
+        os.makedirs(self.output_dir, exist_ok=True)
 
     def evaluate_models(self, X, y):
         """
@@ -104,81 +97,44 @@ class ModelEvaluator:
 
         return X_train, X_test, y_train, y_test
 
-    def train_and_predict(self, X_train, y_train, X_test, test_ids):
+    def train_and_predict(self, X_train, y_train, X_test, test_ids, output_file="submission.csv"):
         """
-        Train the specified best model with its best parameters and predict for test data.
+        Train the specified best model with its best parameters and save predictions to a CSV file.
 
         Args:
             X_train (pd.DataFrame): Training feature matrix.
             y_train (pd.Series): Training target variable.
             X_test (pd.DataFrame): Test feature matrix.
             test_ids (pd.Series): IDs for test data submission.
+            output_file (str): File name for the submission CSV (default: "submission.csv").
 
         Returns:
-            pd.DataFrame: Submission DataFrame with 'id' and 'Age' columns.
+            np.ndarray: Array of predictions.
         """
+        print(f"\n🔧 Training model: {self.best_model_name}")
+
         if self.best_model_name == "WeightedEnsemble":
-            # Use the trained ensemble
             best_model = self.trained_models.get("WeightedEnsemble")
             if best_model is None:
                 raise ValueError("WeightedEnsemble not trained. Run evaluate_models first.")
         else:
-            # Tune the specified best model
             best_model, best_params = self.tuner.tune_model(self.best_model_name, X_train, y_train)
             self.best_params[self.best_model_name] = best_params
+            print(f"✅ Best Parameters for {self.best_model_name}: {best_params}")
 
-        # Train the model
         best_model.fit(X_train, y_train)
-
-        # Predict and round to integers
         predictions = best_model.predict(X_test)
         predictions = np.round(predictions).astype(int)
 
-        # Create submission DataFrame
-        submission = pd.DataFrame({'id': test_ids, 'Age': predictions})
-        return submission
+        output_path = os.path.join(self.output_dir, output_file)
+        submission_df = pd.DataFrame({
+            "id": test_ids,
+            "Age": predictions
+        })
+        submission_df.to_csv(output_path, index=False)
+        print(f"\n📁 Predictions saved to '{output_path}'.")
 
-    def save_all_predictions(self, X_train, y_train, X_test, test_ids, output_dir="predictions"):
-        """
-        Generate and save predictions for all models as CSV files.
-
-        Args:
-            X_train (pd.DataFrame): Training feature matrix.
-            y_train (pd.Series): Training target variable.
-            X_test (pd.DataFrame): Test feature matrix.
-            test_ids (pd.Series): IDs for test data submission.
-            output_dir (str): Directory to save prediction CSVs (default: "predictions").
-        """
-        # Create output directory if it doesn't exist
-        os.makedirs(output_dir, exist_ok=True)
-
-        print("Saving predictions for all models...")
-        for name in self.model_names:
-            if name == "WeightedEnsemble":
-                # Use the trained ensemble
-                model = self.trained_models.get("WeightedEnsemble")
-                if model is None:
-                    print(f"Skipping {name}: Not trained. Run evaluate_models first.")
-                    continue
-            else:
-                # Tune and train the model
-                model, best_params = self.tuner.tune_model(name, X_train, y_train)
-                self.best_params[name] = best_params
-
-            # Train the model
-            model.fit(X_train, y_train)
-
-            # Predict and round to integers
-            predictions = model.predict(X_test)
-            predictions = np.round(predictions).astype(int)
-
-            # Create submission DataFrame
-            submission = pd.DataFrame({'id': test_ids, 'Age': predictions})
-
-            # Save to CSV
-            output_path = os.path.join(output_dir, f"{name}_predictions.csv")
-            submission.to_csv(output_path, index=False)
-            print(f"Saved predictions for {name} to {output_path}")
+        return predictions
 
     def get_rmse_scores(self):
         """
