@@ -17,7 +17,7 @@ class ModelEvaluator:
             output_dir (str): Directory to save the output CSV file (default: "predictions").
         """
         self.model_names = [
-            "CatBoost"
+            "CatBoost",
         ]
         self.best_model_name = best_model_name
         self.rmse_scores = {}
@@ -99,7 +99,8 @@ class ModelEvaluator:
 
     def train_and_predict(self, X_train, y_train, X_test, test_ids, output_file="submission.csv"):
         """
-        Train the specified best model with its best parameters and save predictions to a CSV file.
+        Train the specified best model with its best parameters and save predictions to a CSV file
+        with the format 'id,Age' followed by the predictions.
 
         Args:
             X_train (pd.DataFrame): Training feature matrix.

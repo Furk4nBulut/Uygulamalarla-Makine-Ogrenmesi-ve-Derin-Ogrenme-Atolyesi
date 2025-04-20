@@ -15,16 +15,6 @@ class DataPreprocessing:
         self.df = dataframe.copy()
 
     def preprocess(self, is_test_only=False):
-        """
-        Preprocess the combined dataset and split into train/test or return test data.
-
-        Args:
-            is_test_only (bool): If True, return only preprocessed test data.
-
-        Returns:
-            If is_test_only=True: pd.DataFrame (preprocessed test data).
-            If is_test_only=False: tuple (X_train, X_test, y_train, y_test).
-        """
         self.handle_outliers()
         self.handle_missing_values()
         self.feature_engineering()
@@ -32,16 +22,20 @@ class DataPreprocessing:
         self.encode_features()
 
         if is_test_only:
-            # Return test data (rows where Age is null)
+            # Test verisini al ve 'id'yi düşürmeden önce sakla
             test_data = self.df[self.df['Age'].isnull()].drop('Age', axis=1)
-            return test_data
+            test_ids = test_data["id"].copy()  # 'id'yi sakla
+            test_data = test_data.drop(columns=['id'])  # 'id'yi test verisinden çıkar
+            return test_data, test_ids  # 'test_ids' ile birlikte döndür
         else:
-            # Split into train (Age non-null) and test for validation
+            # Eğitim verisini al ve 'id'yi düşür
             train_data = self.df[self.df['Age'].notnull()]
+            train_data = train_data.drop(columns=['id'])  # 'id'yi düşür
+
             X = train_data.drop('Age', axis=1)
             y = train_data['Age']
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            return X_train, X_test, y_train, y_test
+            X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+            return X_train, X_val, y_train, y_val
 
     def handle_outliers(self):
         """
@@ -76,11 +70,8 @@ class DataPreprocessing:
             self.df[f'Log_{col}'] = np.log1p(self.df[col])
 
     def drop_unnecessary_columns(self):
-        """
-        Drop 'id' column for modeling (keep in test data for submission).
-        """
-        if 'id' in self.df.columns:
-            self.df.drop(columns=['id'], inplace=True)
+        columns_to_drop = ["some_other_column"]  # "id" burada olmamalı
+        self.df.drop(columns=[col for col in columns_to_drop if col in self.df.columns], inplace=True)
 
     def encode_features(self):
         """
