@@ -6,7 +6,7 @@ from PIL import Image
 import os
 
 app = Flask(__name__)
-model = load_model("cifar10_cnn_model.h5")
+model = load_model("output/cifar10_cnn_hypertuned_model.h5")
 
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
